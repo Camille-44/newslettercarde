@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEWSLETTER</title>
+  <style>
+    /* === RESET E BASE === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      font-size: 130%;
+
+      /* Imagem de fundo */
+      background-image: url(Cópia\ de\ 1\ \(64\).jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed; /* <-- Torna a imagem fixa */
+      height: 100vh;
+      color: black;
+    }
+
+.conteudo {
+      padding: 50px;
+      background-color: rgba(0, 0, 0, 0.6); /* fundo escuro translúcido para leitura */
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* === HEADER + MENU RESPONSIVO === */
+    header {
+      background-color: #000;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    nav.menu ul {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    nav.menu ul li a {
+      color: white;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav.menu ul li a:hover {
+      color: #ccc;
+    }
+
+    /* Responsivo - Menu hamburguer */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      nav.menu {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: #111;
+        width: 200px;
+        display: none;
+        border-radius: 0 0 8px 8px;
+      }
+
+      nav.menu.active {
+        display: block;
+      }
+
+      nav.menu ul {
+        flex-direction: column;
+        padding: 10px 0;
+      }
+
+      nav.menu ul li {
+        padding: 10px 20px;
+      }
+    }
+
+    /* === CONTEÚDO PRINCIPAL === */
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 90%;
+      max-width: 1200px;
+      margin: 50px auto;
+      flex-wrap: wrap;
+    }
+
+    .texto.lateral {
+      width: 25%;
+      background-color: white;
+      color: black;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      opacity: 0;
+      animation: slideIn 1.5s forwards;
+    }
+
+    .texto.esquerda {
+      animation-delay: 0.2s;
+    }
+
+    .texto.direita {
+      animation-delay: 0.4s;
+      text-align: right;
+    }
+
+    .imagem-central {
+      width: 500px;
+      margin: 20px;
+      perspective: 1000px;
+    }
+
+    .animada {
+      width: 100%;
+      border: 4px solid white;
+      border-radius: 8px;
+      animation: girar3D 4s infinite ease-in-out;
+      transform-style: preserve-3d;
+      transition: transform 0.3s ease;
+    }
+
+    .animada:hover {
+      transform: scale(1.1) rotateY(20deg);
+    }
+
+    /* === ANIMAÇÕES === */
+    /*@keyframes girar3D {
+      0% {
+        transform: rotateY(0deg) rotateX(0deg);
+      }
+      50% {
+        transform: rotateY(20deg) rotateX(10deg);
+      }
+      100% {
+        transform: rotateY(0deg) rotateX(0deg);
+      }
+    } */
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(100px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsivo para conteúdo */
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .texto.lateral {
+        width: 90%;
+        text-align: center;
+        animation: none;
+        opacity: 1;
+      }
+
+      .imagem-central {
+        width: 80%;
+      }
+
+      .texto.direita {
+        text-align: center;
+      }
+    }
+
+    /* Estilo da seção simulada da segunda página */
+    section#pagina2 {
+      background-color: white;
+      color: black;
+      padding: 50px 20px;
+      border-top: 2px solid #ddd;
+      text-align: justify;
+      line-height: 150%;
+    }
+
+    section#pagina2 p {
+      max-width: 600px;
+      margin: 20px auto;
+      line-height: 1.6;
+    }
+
+    section#pagina2 a {
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER COM MENU -->
+  <header>
+    <div class="logo">NEWS LETTER</div>
+
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+
+    <nav class="menu" id="menu">
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="index1.html">Eventos</a></li>
+        <li><a href="index2.html">Oficinas</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- CONTEÚDO COM IMAGEM E TEXTOS -->
+  <div class="container">
+    <div class="texto lateral esquerda">
+      <p><i><h2>Últimas Notícias</h2></i></p><br>
+
+      <p><a href="3">VISITA  DONA LIA</a></p><br>
+      <p><a href="3">WINTER SALE</a></p><br>
+      <p><a href="3">NOITE NO MUSEU</a></p><br>
+      <p><a href="3">INAUGURAÇÃO DAS NOVAS SALAS</a></p><br>
+    </div>
+
+    <div class="imagem-central">
+      <a href="#pagina2">
+        <img src="luiz.jpeg" alt="Notícia em Destaque" class="animada" />
+      </a>
+    </div>
+
+    <div class="texto lateral direita">
+      <h2> <i><center>Julho foi um mês de encontros entre história, arte e movimento.</center></i></h2><br>
+      <p><center>O CARDE segue firme em sua missão de preservar a memória do automobilismo e, ao mesmo tempo, promover cultura e conhecimento para todos os públicos.</center></p>
+    </div>
+  </div>
+
+  <!-- SIMULANDO SEGUNDA PÁGINA -->
+  <section id="pagina2">
+    <h1>NOSSOS EVENTOS</h1>
+    <p>
+       <center><h2><i>NOVA ESQUETE TEATRAL</i></h2></center><br>
+
+       <p>No dia 17/07 apresentamos as incríveis interações nas salas do CARDE- museu, onde os alunos dos núcleos artísticos preparam apresentações reestilizadas para esse novo momento e sempre com muito swing.</p>
+<p>Na sala "A arquitetura do futuro", essa nova etapa ressalta com o coração, os sentidos das músicas criadas em rodas, sobre os prédios, com um tom suave e romântico. A Bossa Nova.</p>
+   
+    <!-- Carrossel de Imagens -->
+<div class="carrossel-wrapper">
+  <div class="carrossel-slide">
+    <img src="bossa1.jpeg" alt="Imagem 1">
+    <img src="bossa2.jpeg" alt="Imagem 2">
+    <img src="bossa3.jpeg" alt="Imagem 3">
+  </div>
+  <button class="carrossel-btn prev" onclick="moverSlide(-1)">&#10094;</button>
+  <button class="carrossel-btn next" onclick="moverSlide(1)">&#10095;</button>
+</div><br>
+
+<style>
+  .carrossel-wrapper {
+    position: relative;
+    width: 800px;
+    height: 400px;
+    margin: 40px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+
+  .carrossel-slide {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 300%; /* Ajuste proporcional ao número de imagens */
+    height: 100%;
+  }
+
+  .carrossel-slide img {
+    width: 800px;
+    height: 400px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .carrossel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 1;
+    border-radius: 50%;
+  }
+
+  .carrossel-btn:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+
+  .carrossel-btn.prev {
+    left: 10px;
+  }
+
+  .carrossel-btn.next {
+    right: 10px;
+  }
+</style><br>
+
+<script>
+  let indiceAtual1 = 0;
+
+  function moverSlide(direcao) {
+    const slide = document.querySelector('.carrossel-slide');
+    const totalSlides = slide.children.length;
+
+    indiceAtual1 = (indiceAtual1 + direcao + totalSlides) % totalSlides;
+    slide.style.transform = `translateX(-${indiceAtual1 * 800}px)`;
+  }
+</script><br>
+
+<center><h2><i>APRESENTAÇÃO MUSICAL</i></h2></center>
+
+<p>Durante o mês de julho, os visitantes também presenciaram e assistiram a apresentações do Quarteto de Cordas e ao duo clarinete violão formado por alunos do Núcleo de Música fundação Lia Maria Aguiar.</p>
+<p>O concerto, realizado na parte externa e no restaurante do museu, proporcionou ao público uma nova performance de música e arte no CARDE- museu. Trazendo um repertório clássico e popular, onde chamou muita atenção com os talentosos alunos, que, embora ainda jovens, realizaram com perfeição esse momento conosco.
+    </p>
+<!-- Carrossel de Imagens -->
+<div class="carrossel-wrapper">
+  <div class="carrossel-slide">
+    <img src="4teto2.jpeg" alt="Imagem 2">
+  </div>
+  <button class="carrossel-btn prev" onclick="moverSlide(-1)">&#10094;</button>
+  <button class="carrossel-btn next" onclick="moverSlide(1)">&#10095;</button>
+</div><br>
+
+<style>
+  .carrossel-wrapper {
+    position: relative;
+    width: 800px;
+    height: 400px;
+    margin: 40px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+
+  .carrossel-slide {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 300%; /* Ajuste proporcional ao número de imagens */
+    height: 100%;
+  }
+
+  .carrossel-slide img {
+    width: 800px;
+    height: 400px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .carrossel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 1;
+    border-radius: 50%;
+  }
+
+  .carrossel-btn:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+
+  .carrossel-btn.prev {
+    left: 10px;
+  }
+
+  .carrossel-btn.next {
+    right: 10px;
+  }
+</style><br>
+
+<script>
+  let indiceAtual2 = 0;
+
+  function moverSlide(direcao) {
+    const slide = document.querySelector('.carrossel-slide');
+    const totalSlides = slide.children.length;
+
+    indiceAtual2 = (indiceAtual2 + direcao + totalSlides) % totalSlides;
+    slide.style.transform = `translateX(-${indiceAtual2 * 800}px)`;
+  }
+</script><br>
+
+
+<center><h2><i>É DA DONA LIA!</i></h2></center>
+<p>A Federação Internacional de Veículos Antigos (FIVA Fédération Internationale des Véhicules Anciens), por meio de sua representante no Brasil, a Federação Brasileira de Veículos Antigos (FIBA), acaba de anunciar a mais nova integrante de seu internacional Heritage Hall of Fame: Lia Maria Aguiar. É a primeira mulher brasileira a receber essa honraria global, pelo seu compromisso com a preservação do patrimônio antigomobilista.</p>
+<p>Segundo o anúncio da FIVA, “a conquista é um reconhecimento direto ao seu audacioso projeto em Campos do Jordão (SP), onde construiu o CARDE | Arte Design Museu, maior museu antigomobilista da América Latina”. É um marco histórico para o Brasil. Apenas três brasileiros agora compõem essa seleta lista, também formada por Og Pozzoli e Roberto Suga, dois ícones reconhecidos pela sua relevância na preservação da memória antigomobilista.</p>
+  <!-- Carrossel de Imagens -->
+<div class="carrossel-wrapper">
+  <div class="carrossel-slide">
+    <img src="WhatsApp Image 2025-07-30 at 17.47.05.jpeg" alt="Imagem 1">
+  </div>
+  <button class="carrossel-btn prev" onclick="moverSlide(-1)">&#10094;</button>
+  <button class="carrossel-btn next" onclick="moverSlide(1)">&#10095;</button>
+</div><br>
+
+<style>
+  .carrossel-wrapper {
+    position: relative;
+    width: 800px;
+    height: 400px;
+    margin: 40px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+
+  .carrossel-slide {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 300%; /* Ajuste proporcional ao número de imagens */
+    height: 100%;
+  }
+
+  .carrossel-slide img {
+    width: 800px;
+    height: 400px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .carrossel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 1;
+    border-radius: 50%;
+  }
+
+  .carrossel-btn:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+
+  .carrossel-btn.prev {
+    left: 10px;
+  }
+
+  .carrossel-btn.next {
+    right: 10px;
+  }
+</style>    <br>
+
+<script>
+  let indiceAtual = 0;
+
+  function moverSlide(direcao) {
+    const slide = document.querySelector('.carrossel-slide');
+    const totalSlides = slide.children.length;
+
+    indiceAtual = (indiceAtual + direcao + totalSlides) % totalSlides;
+    slide.style.transform = `translateX(-${indiceAtual * 800}px)`;
+  }
+</script><br>
+
+<center><h2><i>JOIAS SOBRE RODAS NO CARDE</i></h2></center>
+
+<p>Durante a primeira semana de julho recebemos uma equipe muita especial, a equipe "Jóia Sobre Rodas". Que em parceria com os alunos da escola de restauração, e o auxílio do Bruno, quem cuida da escola para a apresentação, organizaram e concluíram com sucesso toda a parte mecânica do modelo escolhido da vez. O SP2 da década de 70 - azul.</p>
+
+  <!-- Carrossel de Imagens -->
+<div class="carrossel-wrapper">
+  <div class="carrossel-slide">
+    <img src="joia.jpeg" alt="Imagem 2">
+  </div>
+  <button class="carrossel-btn prev" onclick="moverSlide(-1)">&#10094;</button>
+  <button class="carrossel-btn next" onclick="moverSlide(1)">&#10095;</button>
+</div>
+
+<style>
+  .carrossel-wrapper {
+    position: relative;
+    width: 800px;
+    height: 400px;
+    margin: 40px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+
+  .carrossel-slide {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 300%; /* Ajuste proporcional ao número de imagens */
+    height: 100%;
+  }
+
+  .carrossel-slide img {
+    width: 800px;
+    height: 400px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .carrossel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 1;
+    border-radius: 50%;
+  }
+
+  .carrossel-btn:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+
+  .carrossel-btn.prev {
+    left: 10px;
+  }
+
+  .carrossel-btn.next {
+    right: 10px;
+  }
+</style>
+
+<script>
+  let indiceAtual3 = 0;
+
+  function moverSlide(direcao) {
+    const slide = document.querySelector('.carrossel-slide');
+    const totalSlides = slide.children.length;
+
+    indiceAtual3 = (indiceAtual3 + direcao + totalSlides) % totalSlides;
+    slide.style.transform = `translateX(-${indiceAtual3 * 800}px)`;
+  }
+</script>
+
+
+
+    <center><p><a href="index1.html">↑ Voltar ao topo</a></p></center>
+  </section>
+  
+  <script>
+    // Menu responsivo: toggle hamburguer
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('active');
+    });
+  </script>
+
+
+
+</body>
+<!-- Rodapé -->
+<footer class="footer-basic">
+  <p>&copy; 2025 Seu Nome ou Empresa. Todos os direitos reservados.</p>
+</footer>
+
+<style>
+  .footer-basic {
+    background-color: #f2f2f2;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+    margin-top: 40px;
+    border-top: 1px solid #ddd;
+  }
+
+  .footer-basic p {
+    margin: 0;
+  }
+</style>
+
+</html>

@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEWSLETTER</title>
+  <style>
+    /* === RESET E BASE === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      font-size: 130%;
+
+      /* Imagem de fundo */
+      background-image: url(WhatsApp\ Image\ 2025-07-30\ at\ 17.52.54.jpeg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed; /* <-- Torna a imagem fixa */
+      height: 100vh;
+      color: black;
+    }
+
+.conteudo {
+      padding: 50px;
+      background-color: rgba(0, 0, 0, 0.6); /* fundo escuro translúcido para leitura */
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* === HEADER + MENU RESPONSIVO === */
+    header {
+      background-color: #000;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    nav.menu ul {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    nav.menu ul li a {
+      color: white;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav.menu ul li a:hover {
+      color: #ccc;
+    }
+
+    /* Responsivo - Menu hamburguer */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      nav.menu {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: #111;
+        width: 200px;
+        display: none;
+        border-radius: 0 0 8px 8px;
+      }
+
+      nav.menu.active {
+        display: block;
+      }
+
+      nav.menu ul {
+        flex-direction: column;
+        padding: 10px 0;
+      }
+
+      nav.menu ul li {
+        padding: 10px 20px;
+      }
+    }
+
+    /* === CONTEÚDO PRINCIPAL === */
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 90%;
+      max-width: 1200px;
+      margin: 50px auto;
+      flex-wrap: wrap;
+    }
+
+    .texto.lateral {
+      width: 25%;
+      background-color: white;
+      color: black;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      opacity: 0;
+      animation: slideIn 1.5s forwards;
+    }
+
+    .texto.esquerda {
+      animation-delay: 0.2s;
+    }
+
+    .texto.direita {
+      animation-delay: 0.4s;
+      text-align: right;
+    }
+
+    .imagem-central {
+      width: 500px;
+      margin: 20px;
+      perspective: 1000px;
+    }
+
+    .animada {
+      width: 100%;
+      border: 4px solid white;
+      border-radius: 8px;
+      animation: girar3D 4s infinite ease-in-out;
+      transform-style: preserve-3d;
+      transition: transform 0.3s ease;
+    }
+
+    .animada:hover {
+      transform: scale(1.1) rotateY(20deg);
+    }
+
+    /* === ANIMAÇÕES === */
+    /*@keyframes girar3D {
+      0% {
+        transform: rotateY(0deg) rotateX(0deg);
+      }
+      50% {
+        transform: rotateY(20deg) rotateX(10deg);
+      }
+      100% {
+        transform: rotateY(0deg) rotateX(0deg);
+      }
+    } */
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(100px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsivo para conteúdo */
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .texto.lateral {
+        width: 90%;
+        text-align: center;
+        animation: none;
+        opacity: 1;
+      }
+
+      .imagem-central {
+        width: 80%;
+      }
+
+      .texto.direita {
+        text-align: center;
+      }
+    }
+
+    /* Estilo da seção simulada da segunda página */
+    section#pagina2 {
+      background-color: white;
+      color: black;
+      padding: 50px 20px;
+      border-top: 2px solid #ddd;
+      text-align: justify;
+      line-height: 150%;
+    }
+
+    section#pagina2 p {
+      max-width: 600px;
+      margin: 20px auto;
+      line-height: 1.6;
+    }
+
+    section#pagina2 a {
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER COM MENU -->
+  <header>
+    <div class="logo">NEWS LETTER</div>
+
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+
+    <nav class="menu" id="menu">
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="index1.html">Eventos</a></li>
+        <li><a href="index2.html">Oficinas</a></li>
+      
+      </ul>
+    </nav>
+  </header>
+
+  <!-- CONTEÚDO COM IMAGEM E TEXTOS -->
+  <div class="container">
+    <div class="texto lateral esquerda">
+      <p><i><h2>Últimas Notícias</h2></i></p><br>
+
+      <p><a href="index.html">VISITA  DONA LIA</a></p><br>
+      <p><a href="leilao.html">WINTER SALE</a></p><br>
+      <p><a href="noitemuseu.html">NOITE NO MUSEU</a></p><br>
+      <p><a href="novasalas.html">INAUGURAÇÃO DAS NOVAS SALAS</a></p><br>
+    </div>
+
+    <div class="imagem-central">
+      <a href="#pagina2">
+        <img src="WhatsApp Image 2025-07-30 at 17.54.08.jpeg" alt="Notícia em Destaque" class="animada" />
+      </a>
+    </div>
+
+    <div class="texto lateral direita">
+      <h2> <i><center>Julho foi um mês de encontros entre história, arte e movimento.</center></i></h2><br>
+      <p><center>O CARDE segue firme em sua missão de preservar a memória do automobilismo e, ao mesmo tempo, promover cultura e conhecimento para todos os públicos.</center></p>
+    </div>
+  </div>
+
+  <!-- SIMULANDO SEGUNDA PÁGINA -->
+  <section id="pagina2">
+    <h1>NOSSAS OFICINAS</h1>
+    <p>
+       <center><h2><i>FESTA JUNINA</i></h2></center><br>
+
+       <p>Nos dias 05 e 06 de julho ocorreram a Festa Junina do CARDE. Com programação especial: brincadeiras, pescaria para as crianças e barraquinhas com comidas típicas.</p>
+<p>Focamos nas festividades brasileiras, pois na sala Voz da Juventude e Novas Linguagens, encontramos Obras de Arte com o tema e mostrando a felicidade brasileira. “Foi uma festança Sô!”</p>
+   
+    <!-- Carrossel de Imagens -->
+<div class="carrossel-wrapper">
+  <div class="carrossel-slide">
+    <img src="festajunina.jpeg" alt="Imagem 1">
+    <img src="festajunina2.jpeg" alt="Imagem 2">
+    <img src="festajunina3.jpeg" alt="Imagem 3">
+  </div>
+  <button class="carrossel-btn prev" onclick="moverSlide(-1)">&#10094;</button>
+  <button class="carrossel-btn next" onclick="moverSlide(1)">&#10095;</button>
+</div><br>
+
+<style>
+  .carrossel-wrapper {
+    position: relative;
+    width: 800px;
+    height: 400px;
+    margin: 40px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+
+  .carrossel-slide {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 300%; /* Ajuste proporcional ao número de imagens */
+    height: 100%;
+  }
+
+  .carrossel-slide img {
+    width: 800px;
+    height: 400px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .carrossel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 1;
+    border-radius: 50%;
+  }
+
+  .carrossel-btn:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+
+  .carrossel-btn.prev {
+    left: 10px;
+  }
+
+  .carrossel-btn.next {
+    right: 10px;
+  }
+</style><br>
+
+<script>
+  let indiceAtual1 = 0;
+
+  function moverSlide(direcao) {
+    const slide = document.querySelector('.carrossel-slide');
+    const totalSlides = slide.children.length;
+
+    indiceAtual1 = (indiceAtual1 + direcao + totalSlides) % totalSlides;
+    slide.style.transform = `translateX(-${indiceAtual1 * 800}px)`;
+  }
+</script><br>
+
+<center><h2><i>OFICINA DO CUPCAKE</i></h2></center>
+
+<p>No dia 27 de julho ocorreu o Workshop de Cupcakes. Oficina criativa para crianças, unindo diversão, aprendizado e gastronomia.</p>
+
+<!-- Carrossel de Imagens -->
+<div class="carrossel-wrapper">
+  <div class="carrossel-slide">
+    <img src="WhatsApp Image 2025-07-30 at 17.14.15.jpeg" alt="Imagem 1">
+    
+  </div>
+  <button class="carrossel-btn prev" onclick="moverSlide(-1)">&#10094;</button>
+  <button class="carrossel-btn next" onclick="moverSlide(1)">&#10095;</button>
+</div><br>
+
+<style>
+  .carrossel-wrapper {
+    position: relative;
+    width: 800px;
+    height: 400px;
+    margin: 40px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+
+  .carrossel-slide {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 300%; /* Ajuste proporcional ao número de imagens */
+    height: 100%;
+  }
+
+  .carrossel-slide img {
+    width: 800px;
+    height: 400px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .carrossel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 1;
+    border-radius: 50%;
+  }
+
+  .carrossel-btn:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+
+  .carrossel-btn.prev {
+    left: 10px;
+  }
+
+  .carrossel-btn.next {
+    right: 10px;
+  }
+</style><br>
+
+<script>
+  let indiceAtual2 = 0;
+
+  function moverSlide(direcao) {
+    const slide = document.querySelector('.carrossel-slide');
+    const totalSlides = slide.children.length;
+
+    indiceAtual2 = (indiceAtual2 + direcao + totalSlides) % totalSlides;
+    slide.style.transform = `translateX(-${indiceAtual2 * 800}px)`;
+  }
+</script><br>
+
+
+<center><h2><i>RONCO DOS MOTORES</i></h2></center>
+<p>No dia 25 de julho, o CARDE promoveu um edição do Ronco dos Motores.
+Nos horários das 11h e das 14h, foram ligados motores históricos pertencentes ao acervo da Fundação Lia Maria Aguiar. Entre os destaques:</p>
+<p>•	Motor do Ford Modelo T (1919)
+	•	Motor V12 do Lamborghini Murciélago (2007)
+	•	Motor Rolls Royce (década de 1950)
+	•	Motor Chevrolet Veraneio (1970)</p>
+<p>Os visitantes puderam vivenciar de perto o som e a potência dessas máquinas, que marcaram diferentes épocas da história automotiva.</p>
+  <!-- Carrossel de Imagens -->
+<div class="carrossel-wrapper">
+  <div class="carrossel-slide">
+    <img src="motor.jpeg" alt="Imagem 1">
+  
+  </div>
+  <button class="carrossel-btn prev" onclick="moverSlide(-1)">&#10094;</button>
+  <button class="carrossel-btn next" onclick="moverSlide(1)">&#10095;</button>
+</div><br>
+
+<style>
+  .carrossel-wrapper {
+    position: relative;
+    width: 800px;
+    height: 400px;
+    margin: 40px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+
+  .carrossel-slide {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 300%; /* Ajuste proporcional ao número de imagens */
+    height: 100%;
+  }
+
+  .carrossel-slide img {
+    width: 800px;
+    height: 400px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .carrossel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 1;
+    border-radius: 50%;
+  }
+
+  .carrossel-btn:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+
+  .carrossel-btn.prev {
+    left: 10px;
+  }
+
+  .carrossel-btn.next {
+    right: 10px;
+  }
+</style><br>
+
+<script>
+  let indiceAtual3 = 0;
+
+  function moverSlide(direcao) {
+    const slide = document.querySelector('.carrossel-slide');
+    const totalSlides = slide.children.length;
+
+    indiceAtual3 = (indiceAtual3 + direcao + totalSlides) % totalSlides;
+    slide.style.transform = `translateX(-${indiceAtual3 * 800}px)`;
+  }
+</script><br>
+
+
+
+
+
+    <center><p><a href="index2.html">↑ Voltar ao topo</a></p></center>
+  </section>
+  
+  <script>
+    // Menu responsivo: toggle hamburguer
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('active');
+    });
+  </script>
+
+
+
+</body>
+<!-- Rodapé -->
+<footer class="footer-basic">
+  <p>&copy; 2025 Seu Nome ou Empresa. Todos os direitos reservados.</p>
+</footer>
+
+<style>
+  .footer-basic {
+    background-color: #f2f2f2;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+    margin-top: 40px;
+    border-top: 1px solid #ddd;
+  }
+
+  .footer-basic p {
+    margin: 0;
+  }
+</style>
+
+</html>
